@@ -2,11 +2,7 @@ FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
 
 MAINTAINER yvictor
 
-FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
-
-MAINTAINER Craig Citro <craigcitro@google.com>
-
-# Pick up some TF dependencies
+# Pick up some TF & Pytorch dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         curl \
@@ -36,13 +32,13 @@ RUN pyenv global anaconda3-4.3.0
 
 # Install TensorFlow GPU version.
 RUN pip --no-cache-dir install \
-    http://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.0.1-cp35-cp35m-linux_x86_64.whl
+    http://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.0.1-cp36-cp36m-linux_x86_64.whl
 
 # Install keras GPU version.
 RUN pip install --no-cache-dir keras
 
 # Install pytorch GPU version.
-RUN pip install  --no-cache-dir https://s3.amazonaws.com/pytorch/whl/cu80/torch-0.1.12.post1-cp35-cp35m-linux_x86_64.whl
+RUN pip install  --no-cache-dir https://s3.amazonaws.com/pytorch/whl/cu80/torch-0.1.12.post1-cp36-cp36m-linux_x86_64.whl
 RUN pip install  --no-cache-dir torchvision
 
 
