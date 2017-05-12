@@ -62,7 +62,10 @@ EXPOSE 6006
 EXPOSE 8888
 
 WORKDIR "/home"
-COPY nvidia_test.py /
-CMD python nvidia_test.py
+COPY nvidia_test.py /home/
 
-CMD ["/run_jupyter.sh", "--allow-root"]
+RUN python nvidia_test.py
+RUN /run_jupyter.sh --allow-root
+
+CMD python nvidia_test.py
+CMD /run_jupyter.sh --allow-root
